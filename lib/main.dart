@@ -28,6 +28,8 @@ class MyHomePage extends StatelessWidget {
         ),
         body: Center(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[MySpecialHeading(), MySpecialContent()],
           ),
         ),
@@ -44,7 +46,7 @@ class MySpecialHeading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var weatherInfo = Provider.of<WeatherInfo>(context);
+    // var weatherInfo = Provider.of<WeatherInfo>(context);
 
     return Padding(
       padding: EdgeInsets.all(8.0),
@@ -62,9 +64,11 @@ class MySpecialContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Text("Temperature Value"),
-    );
+        padding: EdgeInsets.all(8.0),
+        child: Consumer<WeatherInfo>(
+          builder: (context, weatherInfo, _) =>
+              Text("Temperature  ${weatherInfo.temperatureVal}"),
+        ));
   }
 }
 
